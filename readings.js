@@ -7,8 +7,13 @@ GospelsInputs = new Mongo.Collection('gospelsInputs');
 
 
   /*------------------------------------------------------------------
-
-        Array of books broken into categories
+      http://docs.meteor.com/#/full/template_body
+      https://github.com/nodemailer/mailcomposer/blob/7c0422b2de2dc61a60ba27cfa3353472f662aeb5/README.md
+      https://kadira.io/academy/meteor-routing-guide/content/rendering-blaze-templates
+      http://meteortips.com/first-meteor-tutorial/forms/
+      https://docs.mongodb.org/manual/tutorial/remove-documents/
+      https://github.com/meteor/meteor/blob/master/packages/spacebars/README.md
+      Array of books broken into categories
 
   ------------------------------------------------------------------*/
 var historicChapters = ['Genesis','Exodus','Leviticus','Numbers','Deuteronomy','Acts', 'Joshua', 'Judges', 'Ruth','1st Samuel', '2nd Samuel', '1st Kings', '2nd Kings', '1st Chronicles', '2nd Chronicles', 'Ezra', 'Esther'];
