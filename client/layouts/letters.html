@@ -1,0 +1,16 @@
+<template name="letters">
+	<h1>Letters</h1>
+	<select name="letters">
+		{{#each readings}}
+			<option value="{{this}}">{{this}}</option>
+		{{/each}}
+	</select>
+	<label>Chapter</label>
+	<input type="text" name="letters_chapter" />
+	<label>Verse</label>
+	<input type="text" name="letters_verse" />
+	<label>Admonition</label>
+	<input type="text" name="letters_admonition" />
+	<label>Reading</label>
+	<input type="text" name="letters_reading" />
+</template>

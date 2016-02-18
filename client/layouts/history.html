@@ -1,0 +1,16 @@
+<template name="historic">
+	<h1>History</h1>
+	<select name="history">
+		{{#each readings}}
+			<option value="{{this}}">{{this}}</option>
+		{{/each}}
+	</select>
+	<label>Chapter</label>
+	<input type="text" name="history_chapter" />
+	<label>Verse</label>
+	<input type="text" name="history_verse" />
+	<label>Admonition</label>
+	<input type="text" name="history_admonition" />
+	<label>Reading</label>
+	<input type="text" name="history_reading" />
+</template>

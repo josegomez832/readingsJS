@@ -1,0 +1,16 @@
+<template name="prophets">
+	<h1>Prophets</h1>
+	<select name="prophets">
+		{{#each readings}}
+			<option value="{{this}}">{{this}}</option>
+		{{/each}}
+	</select>
+	<label>Chapter</label>
+	<input type="text" name="prophets_chapter" />
+	<label>Verse</label>
+	<input type="text" name="prophets_verse" />
+	<label>Admonition</label>
+	<input type="text" name="prophets_admonition" />
+	<label>Reading</label>
+	<input type="text" name="prophets_reading" />
+</template>

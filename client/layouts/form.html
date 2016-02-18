@@ -1,0 +1,25 @@
+<template name="form">
+	<div class="container">
+		<div class="row">
+			<form class="word_of_day">
+				<div class="page page_1 view">
+					<input type="text" name="word" placeholder="Word of the day" />
+				</div>
+				<div class="page page_2">
+					{{> historic}}
+				</div>
+				<div class="page page_3">
+					{{> prophets}}
+				</div>
+				<div class="page page_4">
+					{{> letters}}
+				</div>
+				<div class="page page_5">
+					{{> gospels}}
+				</div>
+				<button type="submit">Submit</button>
+				<a href="#" id="next">next</a>
+			</form>
+		</div>
+	</div>
+</template>

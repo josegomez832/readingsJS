@@ -1,0 +1,16 @@
+<template name="gospels">
+	<h1>Gospels</h1>
+	<select name="gospels">
+		{{#each readings}}
+			<option value="{{this}}">{{this}}</option>
+		{{/each}}
+	</select>
+	<label>Chapter</label>
+	<input type="text" name="gospels_chapter" />
+	<label>Verse</label>
+	<input type="text" name="gospels_verse" />
+	<label>Admonition</label>
+	<input type="text" name="gospels_admonition" />
+	<label>Reading</label>
+	<input type="text" name="gospels_reading" />
+</template>
