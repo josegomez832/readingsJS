@@ -1,0 +1,86 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Cyclr</title>
+	<style>
+		.page{
+		  display:none;
+		}
+		.active{
+		  display:block;
+		}
+		ul{
+		  margin:0;
+		  padding:0;
+		  list-style:none;
+		}
+		ul li{
+		  display:inline-block
+		  ;margin-right:15px;
+		}
+		ul li a{
+		  border-radius:50px;
+		  background:#000;
+		  color:#fff;
+		  width:25px;
+		  height:25px;
+		  display: block;
+		  text-align: center;
+		  line-height: 23px;
+		  text-decoration:none;
+		}
+		ul li a:hover{
+		  background:#c7c7c7;
+		}
+	</style>
+
+</head>
+<body>
+<div class="container">
+  <div class="viewport">
+    <div class="page 1" id="1" page-item="1">
+      <h3>Item 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat blandit velit id tempus. Praesent consequat massa at tellus accumsan lobortis. Donec sit amet nisl enim. In semper nisi a urna dignissim, ullamcorper bibendum erat tincidunt. Etiam erat augue, ullamcorper quis ex lacinia, interdum egestas est. Nam rhoncus tellus turpis, bibendum convallis ipsum vehicula ut. Nunc convallis dolor eget libero lacinia, vitae placerat mi aliquet.</p>
+    </div><!--/page-->
+    <div class="page 2" id="2" page-item="2">
+      <h3>Item 2</h3>
+      <p>Maecenas interdum orci condimentum augue dictum, vel eleifend mauris efficitur. Nam dapibus viverra rutrum. Quisque imperdiet diam ipsum, quis mattis diam suscipit gravida.</p>
+    </div><!--/page-->
+    <div class="page 3" id="3" page-item="3">
+        <h3>Item 3</h3>
+      <p>Proin sit amet convallis augue, non vehicula eros. Mauris vestibulum dolor quis dolor feugiat, nec ullamcorper sem molestie. Nam faucibus mattis arcu sed dignissim. Aenean at sapien quis ligula condimentum tincidunt ut sed ex. Cras lobortis sodales nisl.</p>
+    </div><!--/page-->
+    <div class="page 4" id="4" page-item="4">
+      <h3>Item 4</h3>
+      <p>Proin sit amet convallis augue, non vehicula eros. Mauris vestibulum dolor quis dolor feugiat, nec ullamcorper sem molestie. Nam faucibus mattis arcu sed dignissim. Aenean at sapien quis ligula condimentum tincidunt ut sed ex. Cras lobortis sodales nisl.</p>
+    </div><!--/page-->
+  </div><!--/viewport-->
+</div><!--/container-->
+<ul>
+  <li><a href="#" class="pagination" page-item="1">1</a></li>
+  <li><a href="#" class="pagination" page-item="2">2</a></li>
+  <li><a href="#" class="pagination" page-item="3">3</a></li>
+  <li><a href="#" class="pagination" page-item="4">4</a></li>
+</ul>
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script>
+		var page = $('.page');
+		page.first().addClass('active');
+
+		$('.pagination').click(function(event){	
+		  var triggerBtn = $(this).attr('page-item'),//gets value
+		  current = page.hasClass('active');//true
+		  
+		  event.preventDefault();
+		  page.removeClass('active');
+		  if(current === true){
+		  	$('.page.' + triggerBtn).addClass('active');
+		  }else{
+		  	//console.log('does not have the class active');
+		  }
+		});
+		//Next step add animation to the screens
+	</script>
+</body>
+</html>
