@@ -2,24 +2,48 @@
 	<div class="container">
 		<div class="row">
 			<form class="word_of_day">
-				<div class="page page_1 view">
+				<div class="page 1 view">
 					<input type="text" name="word" placeholder="Word of the day" />
 				</div>
-				<div class="page page_2">
+				<div class="page 2">
 					{{> historic}}
 				</div>
-				<div class="page page_3">
+				<div class="page 3">
 					{{> prophets}}
 				</div>
-				<div class="page page_4">
+				<div class="page 4">
 					{{> letters}}
 				</div>
-				<div class="page page_5">
+				<div class="page 5">
 					{{> gospels}}
 				</div>
 				<button type="submit">Submit</button>
-				<a href="#" id="next">next</a>
 			</form>
 		</div>
 	</div>
+	<ul>
+	  <li><a href="#" class="pagination" page-item="1">1</a></li>
+	  <li><a href="#" class="pagination" page-item="2">2</a></li>
+	  <li><a href="#" class="pagination" page-item="3">3</a></li>
+	  <li><a href="#" class="pagination" page-item="4">4</a></li>
+	  <li><a href="#" class="pagination" page-item="5">5</a></li>
+	</ul>
+	<script>
+		var page = $('.page');
+		page.first().addClass('active');
+
+		$('.pagination').click(function(event){	
+		  var triggerBtn = $(this).attr('page-item'),//gets value
+		  current = page.hasClass('active');//true
+		  
+		  event.preventDefault();
+		  page.removeClass('active');
+		  if(current === true){
+		  	$('.page.' + triggerBtn).addClass('active');
+		  }else{
+		  	//console.log('does not have the class active');
+		  }
+		});
+		//Next step add animation to the screens
+	</script>
 </template>

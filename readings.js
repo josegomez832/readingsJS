@@ -5,7 +5,35 @@ ProphetInputs = new Mongo.Collection('prophetInputs');
 LettersInputs = new Mongo.Collection("lettersInputs");
 GospelsInputs = new Mongo.Collection('gospelsInputs');
 
+var wordInput, history, historyChapters, historyVerse, historyAdmonition, historyReading, prophets, prophetsChapters, prophetsVerse, prophetsAdmonition, prophetsReading, letters, lettersChapters, lettersVerse, lettersAdmonition, lettersReading, gospels, gospelsChapters, gospelsVerse, gospelsAdmonition, gospelsReading;
 
+var emailData = {
+      theWord: wordInput,
+
+      book1: history,
+      chapter1: historyChapters,
+      verse1: historyVerse,
+      admonition1: historyAdmonition,
+      reading1: historyReading,
+
+      book2: prophets,
+      chapter2: prophetsChapters,
+      verse2: prophetsVerse,
+      admonition2: prophetsAdmonition,
+      reading2: prophetsReading,
+
+      book3: letters,
+      chapter3: lettersChapters,
+      verse3: lettersVerse,
+      admonition3: lettersAdmonition,
+      reading3: lettersReading,
+
+      book4: gospels,
+      chapter4: gospelsChapters,
+      verse4: gospelsVerse,
+      admonition4: gospelsAdmonition,
+      reading4: gospelsReading,
+    };
   /*------------------------------------------------------------------
       http://docs.meteor.com/#/full/template_body
       https://github.com/nodemailer/mailcomposer/blob/7c0422b2de2dc61a60ba27cfa3353472f662aeb5/README.md
@@ -65,32 +93,56 @@ if (Meteor.isClient) {
 
 ------------------------------------------------------------------*/
 
-      var wordInput = event.target.word.value;
+      wordInput = event.target.word.value;
 
-      var history = event.target.history.value;
-      var historyChapters = event.target.history_chapter.value;
-      var historyVerse = event.target.history_verse.value;
-      var historyAdmonition = event.target.history_admonition.value;
-      var historyReading = event.target.history_reading.value;
+      history = event.target.history.value;
+      historyChapters = event.target.history_chapter.value;
+      historyVerse = event.target.history_verse.value;
+      historyAdmonition = event.target.history_admonition.value;
+      historyReading = event.target.history_reading.value;
   
-      var prophets = event.target.prophets.value;
-      var prophetsChapters = event.target.prophets_chapter.value;
-      var prophetsVerse = event.target.prophets_verse.value;
-      var prophetsAdmonition = event.target.prophets_admonition.value;
-      var prophetsReading = event.target.prophets_reading.value;
+      prophets = event.target.prophets.value;
+      prophetsChapters = event.target.prophets_chapter.value;
+      prophetsVerse = event.target.prophets_verse.value;
+      prophetsAdmonition = event.target.prophets_admonition.value;
+      prophetsReading = event.target.prophets_reading.value;
  
-      var letters = event.target.letters.value;
-      var lettersChapters = event.target.letters_chapter.value;
-      var lettersVerse = event.target.letters_verse.value;
-      var lettersAdmonition = event.target.letters_admonition.value;
-      var lettersReading = event.target.letters_reading.value;
+      letters = event.target.letters.value;
+      lettersChapters = event.target.letters_chapter.value;
+      lettersVerse = event.target.letters_verse.value;
+      lettersAdmonition = event.target.letters_admonition.value;
+      lettersReading = event.target.letters_reading.value;
 
-      var gospels = event.target.gospels.value;
-      var gospelsChapters = event.target.gospels_chapter.value;
-      var gospelsVerse = event.target.gospels_verse.value;
-      var gospelsAdmonition = event.target.gospels_admonition.value;
-      var gospelsReading = event.target.gospels_reading.value;
+      gospels = event.target.gospels.value;
+      gospelsChapters = event.target.gospels_chapter.value;
+      gospelsVerse = event.target.gospels_verse.value;
+      gospelsAdmonition = event.target.gospels_admonition.value;
+      gospelsReading = event.target.gospels_reading.value;
 
+      var readArr = [
+        wordInput,
+        history,
+        historyChapters,
+        historyVerse,
+        historyAdmonition,
+        historyReading,
+        prophets,
+        prophetsChapters,
+        prophetsVerse,
+        prophetsAdmonition,
+        prophetsReading,
+        letters,
+        lettersChapters,
+        lettersVerse,
+        lettersAdmonition,
+        lettersReading,
+        gospels,
+        gospelsChapters,
+        gospelsVerse,
+        gospelsAdmonition,
+        gospelsReading
+      ];
+      var readArrLength = readArr.length;
 /*------------------------------------------------------------------
 
         This block throws stores the information grabbed from the 
@@ -141,6 +193,33 @@ if (Meteor.isClient) {
       });
       //Clear form field
       //event.target.text.value = "";
+
+      //this should send a call on terminal window
+      //need to setup real email alerts...soon
+      Meteor.call('sendEmail', emailAddr, fromAddr, subjectLine, email);
+        console.log(emailData);
+    return wordInput,
+        history,
+        historyChapters,
+        historyVerse,
+        historyAdmonition,
+        historyReading,
+        prophets,
+        prophetsChapters,
+        prophetsVerse,
+        prophetsAdmonition,
+        prophetsReading,
+        letters,
+        lettersChapters,
+        lettersVerse,
+        lettersAdmonition,
+        lettersReading,
+        gospels,
+        gospelsChapters,
+        gospelsVerse,
+        gospelsAdmonition,
+        gospelsReading
+    
     }
   });
 
@@ -177,26 +256,42 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    process.env.MAIL_URL = 'smtp://postmaster%40sandboxcadea6d4b0ae451f8a135f736c79d9be.mailgun.org:d8281d65fe75546770d64aa98ea44c87@smtp.mailgun.org:587';
+    SSR.compileTemplate( 'htmlEmail', Assets.getText( 'html-email.html' ) );
+    
+    var emailAddr = "gomez.jose853@gmail.com";
+    var fromAddr = "gomez.jose853@gmail.com";
+    var subjectLine = "Word for Wednesday";
+    var email = SSR.render('htmlEmail', emailData);
+    //console.log(email);
+    Meteor.methods({
+        sendEmail: function(to, from, subject, html){          
+          this.unblock();
+          Email.send({
+            to: emailAddr,
+            from: fromAddr,
+            subject: subjectLine,
+            html: email
+          });
+        }
+          
+    });
+   
+    
     // code to run on server at startup
-  });
-  // Meteor.methods({
-  //   sendEmail: function(to, from, subject, text){
-  //     check([to,from,subject, text], [String]);
+    // Meteor.methods({
+    //   sendEmail: function(to, from, subject, html){
+    //     check([to,from,subject, html], [String]);
 
-  //     this.unblock();
-  //     Email.send({
-  //       to: to,
-  //       from: from,
-  //       subject: subject,
-  //       text: text
-  //     });
-  //   }
-  // });
-  // Meteor.call(
-  //   'sendEmail',
-  //   'gomez.jose853@gmail.com',
-  //   'jose.gomez@mmiagency.com',
-  //   'Hello from Meteor!',
-  //   'This is a test of Email.send.'
-  // );
-}
+    //     this.unblock();
+    //     Email.send({
+    //         to: to,
+    //         from: from,
+    //         subject: subject,
+    //         html: html
+    //       });//Email.send()
+    //     }//sendEmail function
+    //   });//Meteor.methods()
+
+  });//Meteor.startup()
+}//Meteor.isServer

@@ -1,3 +1,26 @@
 /* CSS declarations go here */
-/*.page{display:none;}
-.view{display: block;}*/
+.page{display:none;}
+.active{display: block;}
+ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+ul li{
+	display:inline-block;
+	margin-right:15px;
+}
+ul li a{
+	border-radius:50px;
+	background:#000;
+	color:#fff;
+	width:25px;
+	height:25px;
+	display: block;
+	text-align: center;
+	line-height: 23px;
+	text-decoration:none;
+}
+ul li a:hover{
+	background:#c7c7c7;
+}
