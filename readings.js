@@ -5,35 +5,7 @@ ProphetInputs = new Mongo.Collection('prophetInputs');
 LettersInputs = new Mongo.Collection("lettersInputs");
 GospelsInputs = new Mongo.Collection('gospelsInputs');
 
-var wordInput, history, historyChapters, historyVerse, historyAdmonition, historyReading, prophets, prophetsChapters, prophetsVerse, prophetsAdmonition, prophetsReading, letters, lettersChapters, lettersVerse, lettersAdmonition, lettersReading, gospels, gospelsChapters, gospelsVerse, gospelsAdmonition, gospelsReading;
-
-var emailData = {
-      theWord: wordInput,
-
-      book1: history,
-      chapter1: historyChapters,
-      verse1: historyVerse,
-      admonition1: historyAdmonition,
-      reading1: historyReading,
-
-      book2: prophets,
-      chapter2: prophetsChapters,
-      verse2: prophetsVerse,
-      admonition2: prophetsAdmonition,
-      reading2: prophetsReading,
-
-      book3: letters,
-      chapter3: lettersChapters,
-      verse3: lettersVerse,
-      admonition3: lettersAdmonition,
-      reading3: lettersReading,
-
-      book4: gospels,
-      chapter4: gospelsChapters,
-      verse4: gospelsVerse,
-      admonition4: gospelsAdmonition,
-      reading4: gospelsReading,
-    };
+var wordInput, history, historyChapters, historyVerse, historyAdmonition, historyReading, prophets, prophetsChapters, prophetsVerse, prophetsAdmonition, prophetsReading, letters, lettersChapters, lettersVerse, lettersAdmonition, lettersReading, gospels, gospelsChapters, gospelsVerse, gospelsAdmonition, gospelsReading, userEmail;
   /*------------------------------------------------------------------
       http://docs.meteor.com/#/full/template_body
       https://github.com/nodemailer/mailcomposer/blob/7c0422b2de2dc61a60ba27cfa3353472f662aeb5/README.md
@@ -49,16 +21,16 @@ var prophetChapters = ['Isaiah','Jeremiah','Lamentations','Ezekiel','Daniel','Ho
 var gospelChapters = ['Matthew','Mark','Luke','John'];
 var letterChapters = ['Romans','1st Corinthians','2nd Corinthians','Galatians','Ephesians','Philppians','Colossians','1st Thessalonians','2nd Thessalonians','1st Timothy','2nd Timothy','Titus','Philemon', 'Hebrews','James','1st Peter','2nd Peter','1st John','2nd John','3rd John','Jude','Revelation'];
  
+
 if (Meteor.isClient) {
   //Word
   Template.body.helpers({
-
-/*------------------------------------------------------------------
+    /*------------------------------------------------------------------
 
         This block find()'s the object values and passes them into their
         template tags on index.html. You can check out the table in that file
 
-------------------------------------------------------------------*/
+    ------------------------------------------------------------------*/
     words: function(){
       return Word.find();
     },
@@ -75,12 +47,7 @@ if (Meteor.isClient) {
       return GospelsInputs.find();
     }
   });
-  Template.form.events({
-    "click #next": function(event){
-      console.log('click');
-      template.$('#next').removeClass('view');      
-    }
-  });
+
   Template.form.events({
     "submit .word_of_day":function(event){
 
@@ -119,30 +86,7 @@ if (Meteor.isClient) {
       gospelsAdmonition = event.target.gospels_admonition.value;
       gospelsReading = event.target.gospels_reading.value;
 
-      var readArr = [
-        wordInput,
-        history,
-        historyChapters,
-        historyVerse,
-        historyAdmonition,
-        historyReading,
-        prophets,
-        prophetsChapters,
-        prophetsVerse,
-        prophetsAdmonition,
-        prophetsReading,
-        letters,
-        lettersChapters,
-        lettersVerse,
-        lettersAdmonition,
-        lettersReading,
-        gospels,
-        gospelsChapters,
-        gospelsVerse,
-        gospelsAdmonition,
-        gospelsReading
-      ];
-      var readArrLength = readArr.length;
+      userEmail = event.target.user_email.value;
 /*------------------------------------------------------------------
 
         This block throws stores the information grabbed from the 
@@ -191,36 +135,43 @@ if (Meteor.isClient) {
         reading: gospelsReading,
         createdAt: new Date()
       });
-      //Clear form field
-      //event.target.text.value = "";
+      
 
+      var htmlData = "<table width='600' align='center'><tr><td colspan='6'>Word: "+wordInput+"</td></tr><tr><td>Category</td><td>Book</td><td>Chapter</td><td>Verse</td><td>Admonition</td><td>Reading</td><tr><tr><td>Historic</td><td>"+history+"</td><td>"+historyChapters+"</td><td>"+historyVerse+"</td><td>"+historyAdmonition+"</td><td>"+historyReading+"</td></tr><tr><td>Prophets</td><td>"+prophets+"</td><td>"+prophetsChapters+"</td><td>"+prophetsVerse+"</td><td>"+prophetsAdmonition+"</td><td>"+prophetsReading+"</td></tr><tr><td>Letters</td><td>"+letters+"</td><td>"+lettersChapters+"</td><td>"+lettersVerse+"</td><td>"+lettersAdmonition+"</td><td>"+lettersReading+"</td></tr><tr><td>Gospels</td><td>"+gospels+"</td><td>"+gospelsChapters+"</td><td>"+gospelsVerse+"</td><td>"+gospelsAdmonition+"</td><td>"+gospelsReading+"</td></tr></table>";
+   
       //this should send a call on terminal window
       //need to setup real email alerts...soon
-      Meteor.call('sendEmail', emailAddr, fromAddr, subjectLine, email);
-        console.log(emailData);
-    return wordInput,
-        history,
-        historyChapters,
-        historyVerse,
-        historyAdmonition,
-        historyReading,
-        prophets,
-        prophetsChapters,
-        prophetsVerse,
-        prophetsAdmonition,
-        prophetsReading,
-        letters,
-        lettersChapters,
-        lettersVerse,
-        lettersAdmonition,
-        lettersReading,
-        gospels,
-        gospelsChapters,
-        gospelsVerse,
-        gospelsAdmonition,
-        gospelsReading
-    
-    }
+      if(userEmail === ""){
+        Meteor.call('sendEmail', 'gomez.jose853@gmail.com',htmlData);
+      }else{
+        Meteor.call('sendEmail', userEmail, htmlData);
+      }
+      
+     // console.log(htmlData);
+
+      return wordInput,
+          history,
+          historyChapters,
+          historyVerse,
+          historyAdmonition,
+          historyReading,
+          prophets,
+          prophetsChapters,
+          prophetsVerse,
+          prophetsAdmonition,
+          prophetsReading,
+          letters,
+          lettersChapters,
+          lettersVerse,
+          lettersAdmonition,
+          lettersReading,
+          gospels,
+          gospelsChapters,
+          gospelsVerse,
+          gospelsAdmonition,
+          gospelsReading
+      
+      }
   });
 
   //Historic section only
@@ -257,41 +208,23 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     process.env.MAIL_URL = 'smtp://postmaster%40sandboxcadea6d4b0ae451f8a135f736c79d9be.mailgun.org:d8281d65fe75546770d64aa98ea44c87@smtp.mailgun.org:587';
-    SSR.compileTemplate( 'htmlEmail', Assets.getText( 'html-email.html' ) );
+    //SSR.compileTemplate( 'htmlEmail', Assets.getText( 'html-email.html' ) );
     
-    var emailAddr = "gomez.jose853@gmail.com";
-    var fromAddr = "gomez.jose853@gmail.com";
-    var subjectLine = "Word for Wednesday";
-    var email = SSR.render('htmlEmail', emailData);
+
     //console.log(email);
     Meteor.methods({
-        sendEmail: function(to, from, subject, html){          
+        sendEmail: function(to,html){  
+          check([to,html],[String]);        
           this.unblock();
           Email.send({
-            to: emailAddr,
-            from: fromAddr,
-            subject: subjectLine,
-            html: email
+            to: to,
+            from: "gomez.jose853@gmail.com",
+            subject: "Preparation for Wednesday",
+            html: html
           });
         }
           
     });
-   
-    
-    // code to run on server at startup
-    // Meteor.methods({
-    //   sendEmail: function(to, from, subject, html){
-    //     check([to,from,subject, html], [String]);
-
-    //     this.unblock();
-    //     Email.send({
-    //         to: to,
-    //         from: from,
-    //         subject: subject,
-    //         html: html
-    //       });//Email.send()
-    //     }//sendEmail function
-    //   });//Meteor.methods()
 
   });//Meteor.startup()
 }//Meteor.isServer

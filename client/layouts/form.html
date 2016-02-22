@@ -16,22 +16,38 @@
 				</div>
 				<div class="page 5">
 					{{> gospels}}
+					<div class="pull-down">
+						<span>Would you like to send this to yourself? (not required)</span>
+						<input type="text" name="user_email" placeholder="Your Email" />
+					</div>
+					<button type="submit">Submit</button>
 				</div>
-				<button type="submit">Submit</button>
+				
 			</form>
+			<ul>
+			  <li><a href="#" class="pagination" page-item="1">1</a></li>
+			  <li><a href="#" class="pagination" page-item="2">2</a></li>
+			  <li><a href="#" class="pagination" page-item="3">3</a></li>
+			  <li><a href="#" class="pagination" page-item="4">4</a></li>
+			  <li><a href="#" class="pagination" page-item="5">5</a></li>
+			</ul>
 		</div>
 	</div>
-	<ul>
-	  <li><a href="#" class="pagination" page-item="1">1</a></li>
-	  <li><a href="#" class="pagination" page-item="2">2</a></li>
-	  <li><a href="#" class="pagination" page-item="3">3</a></li>
-	  <li><a href="#" class="pagination" page-item="4">4</a></li>
-	  <li><a href="#" class="pagination" page-item="5">5</a></li>
-	</ul>
+	
 	<script>
 		var page = $('.page');
 		page.first().addClass('active');
+		var pageLength = page.length;
+		//console.log(pageLength);
 
+		var pageActive = page.hasClass('active');
+		var finalStep = $('.page.5').hasClass('final');
+
+
+		if( page === '5' && finalStep === true){//if page has active and it's the final show submit button
+			//console.log('yeah boi');
+		}
+		console.log(finalStep);
 		$('.pagination').click(function(event){	
 		  var triggerBtn = $(this).attr('page-item'),//gets value
 		  current = page.hasClass('active');//true

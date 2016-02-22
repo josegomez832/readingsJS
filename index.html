@@ -1,5 +1,6 @@
 <head>
   <title>{{name}}</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 </head>
 
 <body>
@@ -10,70 +11,7 @@
 	<!--/And possibly have a results page to display for a specific day-->
 
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<table class="table">
-					<tr>
-						<td colspan="6">
-							{{#each words}}
-								<p>{{text}} | {{createdAt}}</p>
-							{{/each}}
-						</td>
-					</tr>
-					<tr>
-						<th>Book</th>
-						<th>Chapter</th>
-						<th>Verse</th>
-						<th>Admonition</th>
-						<th>Reading</th>
-						<th>Created At</th>
-					</tr>
-				{{#each historyInputs}}
-					<tr>
-						<td><strong>{{book}}</strong></td>
-						<td>{{chapter}}</td>
-						<td>{{verse}}</td>
-						<td>{{admonition}}</td>
-						<td>{{reading}}</td>
-						<td><strong>{{createdAt}}</strong></td>
-					</tr>
-				{{/each}}
-				{{#each prophetInputs}}
-					<tr>
-						<td><strong>{{book}}</strong></td>
-						<td>{{chapter}}</td>
-						<td>{{verse}}</td>
-						<td>{{admonition}}</td>
-						<td>{{reading}}</td>
-						<td><strong>{{createdAt}}</strong></td>
-					</tr>
-				{{/each}}
-				{{#each lettersInputs}}
-					<tr>
-						<td><strong>{{book}}</strong></td>
-						<td>{{chapter}}</td>
-						<td>{{verse}}</td>
-						<td>{{admonition}}</td>
-						<td>{{reading}}</td>
-						<td><strong>{{createdAt}}</strong></td>
-					</tr>
-				{{/each}}
-				{{#each gospelsInputs}}
-					<tr>
-						<td><strong>{{book}}</strong></td>
-						<td>{{chapter}}</td>
-						<td>{{verse}}</td>
-						<td>{{admonition}}</td>
-						<td>{{reading}}</td>
-						<td><strong>{{createdAt}}</strong></td>
-					</tr>
-				{{/each}}
-				
-				</table>
-			</div>
-		</div>
-	</div>
+	
 	<!--/not pulling-->
 	
 	<!-- <div class="container">
