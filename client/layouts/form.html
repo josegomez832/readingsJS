@@ -1,36 +1,40 @@
 <template name="form">
 	<div class="container">
 		<div class="row">
-			<form class="word_of_day">
-				<div class="page 1 view">
-					<input type="text" name="word" placeholder="Word of the day" />
-				</div>
-				<div class="page 2">
-					{{> historic}}
-				</div>
-				<div class="page 3">
-					{{> prophets}}
-				</div>
-				<div class="page 4">
-					{{> letters}}
-				</div>
-				<div class="page 5">
-					{{> gospels}}
-					<div class="pull-down">
-						<span>Would you like to send this to yourself? (not required)</span>
-						<input type="text" name="user_email" placeholder="Your Email" />
+			<div class="col-md-12">
+				<form class="word_of_day">
+					<div class="page 1 view">
+						<h1>Preparation for Wednesday's Celebration</h1>
+						<p>Enter the word and fill out the fields as you go.</p>
+						<input type="text" name="word" placeholder="Word of the day" />
 					</div>
-					<button type="submit">Submit</button>
-				</div>
-				
-			</form>
-			<ul>
-			  <li><a href="#" class="pagination" page-item="1">1</a></li>
-			  <li><a href="#" class="pagination" page-item="2">2</a></li>
-			  <li><a href="#" class="pagination" page-item="3">3</a></li>
-			  <li><a href="#" class="pagination" page-item="4">4</a></li>
-			  <li><a href="#" class="pagination" page-item="5">5</a></li>
-			</ul>
+					<div class="page 2">
+						{{> historic}}
+					</div>
+					<div class="page 3">
+						{{> prophets}}
+					</div>
+					<div class="page 4">
+						{{> letters}}
+					</div>
+					<div class="page 5">
+						{{> gospels}}
+						<div class="pull-down">
+							<span>Would you like to send this to yourself? (not required)</span>
+							<input type="text" name="user_email" placeholder="Your Email" />
+						</div>
+						<button type="submit">Submit</button>
+					</div>
+					
+				</form>
+				<ul>
+				  <li><a href="#" class="pagination" page-item="1">1</a></li>
+				  <li><a href="#" class="pagination" page-item="2">2</a></li>
+				  <li><a href="#" class="pagination" page-item="3">3</a></li>
+				  <li><a href="#" class="pagination" page-item="4">4</a></li>
+				  <li><a href="#" class="pagination" page-item="5">5</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	
