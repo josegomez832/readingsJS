@@ -142,7 +142,8 @@ if (Meteor.isClient) {
       //this should send a call on terminal window
       //need to setup real email alerts...soon
       if(userEmail === ""){
-        Meteor.call('sendEmail', 'gomez.jose853@gmail.com',htmlData);
+        //Meteor.call('sendEmail', 'gomez.jose853@gmail.com',htmlData);
+        $('.error').html('please fill email out');
       }else{
         Meteor.call('sendEmail', userEmail, htmlData);
       }

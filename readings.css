@@ -30,6 +30,7 @@ button{
 h1, p{
 	text-align: center;
 }
+.error{color:red;}
 .page{display:none;}
 .active{display: block;}
 ul{
