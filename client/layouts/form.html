@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<form class="word_of_day">
-					<div class="page 1 view">
+					<div class="page 1">
 						<h1>Preparation for Wednesday's Celebration</h1>
 						<p>Enter the word and fill out the fields as you go.</p>
 						<input type="text" name="word" placeholder="Word of the day" />
@@ -29,19 +29,23 @@
 					
 				</form>
 				<ul>
-				  <li><a href="#" class="pagination" page-item="1">1</a></li>
-				  <li><a href="#" class="pagination" page-item="2">2</a></li>
-				  <li><a href="#" class="pagination" page-item="3">3</a></li>
-				  <li><a href="#" class="pagination" page-item="4">4</a></li>
-				  <li><a href="#" class="pagination" page-item="5">5</a></li>
+				  <li><a href="#" class="pagination" page-item="1">Word</a></li>
+				  <li><a href="#" class="pagination" page-item="2">Historic</a></li>
+				  <li><a href="#" class="pagination" page-item="3">Prophets</a></li>
+				  <li><a href="#" class="pagination" page-item="4">Letters</a></li>
+				  <li><a href="#" class="pagination" page-item="5">Gospels</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
 	<script>
-		var page = $('.page');
-		page.first().addClass('active');
+		var page = $('.page'),
+		paginationBtn = $('.pagination');
+
+		page.first().addClass('active'),
+		paginationBtn.first().addClass('active');
+
 		var pageLength = page.length;
 		//console.log(pageLength);
 
@@ -52,15 +56,22 @@
 		if( page === '5' && finalStep === true){//if page has active and it's the final show submit button
 			//console.log('yeah boi');
 		}
-		console.log(finalStep);
+		
+
 		$('.pagination').click(function(event){	
+
 		  var triggerBtn = $(this).attr('page-item'),//gets value
 		  current = page.hasClass('active');//true
-		  
+		  var paginated = $(this).hasClass('active');//true or false
+
 		  event.preventDefault();
+
 		  page.removeClass('active');
+		  $(this).removeClass('active');
+
 		  if(current === true){
 		  	$('.page.' + triggerBtn).addClass('active');
+
 		  }else{
 		  	//console.log('does not have the class active');
 		  }

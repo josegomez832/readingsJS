@@ -24,7 +24,7 @@ var letterChapters = ['Romans','1st Corinthians','2nd Corinthians','Galatians','
 
 if (Meteor.isClient) {
   //Word
-  Template.body.helpers({
+  Template.results.helpers({
     /*------------------------------------------------------------------
 
         This block find()'s the object values and passes them into their
@@ -145,7 +145,11 @@ if (Meteor.isClient) {
         //Meteor.call('sendEmail', 'gomez.jose853@gmail.com',htmlData);
         $('.error').html('please fill email out');
       }else{
-        Meteor.call('sendEmail', userEmail, htmlData);
+        Meteor.call('sendEmail', userEmail, htmlData, function(err,data){
+          if (!err) {
+           FlowRouter.go('/confirmation');
+          }
+        });
       }
       
      // console.log(htmlData);
@@ -175,10 +179,6 @@ if (Meteor.isClient) {
       }
   });
 
-  //Historic section only
-  Template.welcome.helpers({
-    chapter: [{name: "History"}, {name: "Prophets"}, {name: "Letters"}, {name: "Gospels"}]
-  });
 
 /*------------------------------------------------------------------
 
